@@ -9,6 +9,7 @@ export default function () {
       <h1>Page index</h1>
       <div><Link to="./users">go to /users</Link></div>
       <div><Link to="./graph/index">go to /Graph</Link></div>
+      <div><Link to="./graph/demo/index">go to demo/Graph</Link></div>
     </div>
   );
 }

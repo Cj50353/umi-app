@@ -25,6 +25,7 @@ export default class Graph extends React.Component<P, {}>{
   static box=null
   private graph=null;
 
+
   componentDidMount(){
     this.init();
   }
@@ -32,7 +33,7 @@ export default class Graph extends React.Component<P, {}>{
     this.init();
   }
   componentWillUnmount(){
-    // this.graph.destroy()
+
   }
   init(){
     if(!this.graph) {
@@ -82,12 +83,13 @@ export default class Graph extends React.Component<P, {}>{
         width: window.innerWidth,
         height: window.innerHeight,
         pixelRatio: 2,
+        renderer: 'svg',
         modes: {
           default: ['drag-canvas', 'zoom-canvas']
         },
 
         defaultNode: {
-          shape: 'node',
+          shape: 'node1',
           labelCfg: {
             style: {
               fill: '#000000A6',
@@ -111,7 +113,6 @@ export default class Graph extends React.Component<P, {}>{
       })
     }
     this.graph.data(data)
-    console.log('this.graph',this.graph)
     this.graph.render()
 
     const edges = this.graph.getEdges()
