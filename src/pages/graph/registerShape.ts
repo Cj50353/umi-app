@@ -147,6 +147,25 @@ G6.registerNode('node', {
           fill: '#000000D9'
         }
       });
+      //标签
+      const icon = group.addShape('text', {
+        attrs: {
+          text: '原始COU',
+          x: endPoint.x/2-startPoint.x/2-width/2,
+          y: endPoint.y,
+          fontSize: 14,
+          fontWeight: 300,
+          textAlign: 'center',
+          textBaseline: 'top',
+          fill: '#000000D9'
+        }
+      });
+      icon.transform([
+        ['t', -10, 0],    // x方向平移100,y方向平移100
+        // ['s', 0.1, 1.2],    // x方向缩小0.1倍， y方向扩大1.2倍
+        ['r', Math.PI / 4]    // 旋转45度
+      ])
+      icon.translate(width/2,0)
       return rect;
     },
 

@@ -1,4 +1,5 @@
-
-.normal {
-  background: #EAF279;
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  height: 100vh;
 }

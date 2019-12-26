@@ -76,16 +76,18 @@ export default class Graph extends React.Component<P, {}>{
           coord.points.length - 1
         );
       });
-
       this.graph = new G6.Graph({
         container: ReactDOM.findDOMNode(this.box),
         width: window.innerWidth,
         height: window.innerHeight,
         pixelRatio: 2,
+        autoPaint:true,
+        fitView: false,
+        linkCenter: true,
+        // fitViewPadding: [ 50,50,50,50 ],
         modes: {
           default: ['drag-canvas', 'zoom-canvas']
         },
-
         defaultNode: {
           shape: 'node',
           labelCfg: {
@@ -110,20 +112,21 @@ export default class Graph extends React.Component<P, {}>{
         }
       })
     }
+
     this.graph.data(data)
     console.log('this.graph',this.graph)
     this.graph.render()
 
-    const edges = this.graph.getEdges()
-    edges.forEach(edge => {
-      const line = edge.getKeyShape()
-      const stroke = line.attr('stroke')
-      const targetNode = edge.getTarget()
-      targetNode.update({
-        style: { stroke }
-      })
-    })
-    this.graph.paint()
+    // const edges = this.graph.getEdges()
+    // edges.forEach(edge => {
+    //   const line = edge.getKeyShape()
+    //   const stroke = line.attr('stroke')
+    //   const targetNode = edge.getTarget()
+    //   targetNode.update({
+    //     style: { stroke }
+    //   })
+    // })
+    // this.graph.paint()
     // bindEvents()
   }
   bindEvents=()=>{
