@@ -12,10 +12,6 @@ const config: IConfig = {
           component: './graph/index',
         },
         {
-          path: '/graph/demo/index',
-          component: './graph/demo/index',
-        },
-        {
           path: '/users',
           component: './users',
         },
