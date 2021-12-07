@@ -3,6 +3,7 @@ import {message} from "antd";
 import "./registerShape.tsx";
 import styles from "./transferTree.css";
 import lodash from "lodash";
+import downloadFullImage from "./downloadFullImage";
 let G6= require('@antv/g6');
 interface P{
     data:{
@@ -207,7 +208,8 @@ export default class Graph extends React.Component<P, {}>{
     }
     download2() {
         console.log('点击下载')
-        this.graph.downloadFullImage();
+        downloadFullImage.call(this.graph)
+        // this.graph.downloadFullImage();
     }
     render(){
         return <div className={styles.transferTree}>
