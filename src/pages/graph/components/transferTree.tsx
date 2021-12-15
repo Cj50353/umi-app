@@ -13,7 +13,7 @@ interface P{
 export default class Graph extends React.Component<P, {}>{
 
     
-    private isNeedFitView:any=false;
+    private isNeedFitView:any=true;
     private hasException:any=false;
 
     private box:any=null
@@ -24,6 +24,10 @@ export default class Graph extends React.Component<P, {}>{
         if(!lodash.isEmpty(this.props.data)){
             this.init(this.props.data)
         }
+        //@ts-ignore
+        window.graph = this.graph
+         //@ts-ignore
+        window.box=this.box
     }
     componentDidUpdate(){
         if(!lodash.isEmpty(this.props.data)){
@@ -120,8 +124,11 @@ export default class Graph extends React.Component<P, {}>{
             return;
         }
         if (!this.graph) {
-            console.log('G6', G6)
+            console.log('G6', G6, this.isNeedFitView)
+            const grid = new G6.Grid();
+            const minimap = new G6.Minimap();       
             this.graph = new G6.Graph({
+                plugins: [grid, minimap],
                 container: 'box',
                 width: this.box.offsetWidth,
                 height: this.box.offsetHeight,
@@ -129,8 +136,9 @@ export default class Graph extends React.Component<P, {}>{
                 modes: {
                     default: ['drag-canvas', 'zoom-canvas']
                 },
-                fitView: this.isNeedFitView,
-                fitViewPadding: this.isNeedFitView ? 100 : 0,
+                //自适应所有位置
+                fitView: true,
+                fitViewPadding: [-200,100,100,100],
                 minZoom: 0.5,
                 maxZoom: 1.1,
                 layout: {
@@ -165,9 +173,11 @@ export default class Graph extends React.Component<P, {}>{
         }
         this.graph.data(lodash.cloneDeep(data));
         this.graph.render()
-        if (!this.isNeedFitView) this.customFitView()
-        if (!this.isNeedFitView) this.goToZoom();
-        this.bindEvents()
+        setTimeout(() => {
+            // this.customFitView()
+            this.goToZoom()
+            this.bindEvents()
+        }, 1);
     }
     //将 graph 缩小到指定大小
     goToZoom(){
