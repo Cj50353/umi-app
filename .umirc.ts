@@ -12,6 +12,10 @@ const config: IConfig = {
           component: './graph/index',
         },
         {
+          path: '/state/index',
+          component: './state/index',
+        },
+        {
           path: '/users',
           component: './users',
         },
